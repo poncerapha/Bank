@@ -5,22 +5,23 @@ public class Bank {
         final double INITIAL_AMOUNT = 2500.00;
         final int EXIT_PROGRAM = 4;
         double totalAmount = INITIAL_AMOUNT;
-
+        int operation = 0;
         Scanner scanner = new Scanner(System.in);
-        printWelcomeMessage();
-        printOperations();
 
-        int userInput = scanner.nextInt();
-        while (userInput != EXIT_PROGRAM) {
-            if (userInput == 1) {
+        printWelcomeMessage();
+
+        while (operation != EXIT_PROGRAM) {
+            printOperations();
+            operation = scanner.nextInt();
+            if (operation == 1) {
                 String amountMessage = "Seu saldo e de: %.2f".formatted(totalAmount);
                 System.out.println(amountMessage);
-            } else if (userInput == 2) {
+            } else if (operation == 2) {
                 System.out.println("Digite o valor que quer receber");
                 double value = scanner.nextInt();
                 totalAmount = receiveTransfer(value, totalAmount);
                 printCurrentAmount(totalAmount);
-            } else if (userInput == 3) {
+            } else if (operation == 3) {
                 System.out.println("Digite o valor que deseja transferir");
                 double value = scanner.nextInt();
                 totalAmount = withdraw(value, totalAmount);
@@ -28,8 +29,6 @@ public class Bank {
             } else {
                 System.out.println("Operacao invalida");
             }
-            printOperations();
-            userInput = scanner.nextInt();
         }
     }
 
